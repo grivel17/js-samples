@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Sass praktyka</title>
+
+
+    
+</head>
+<body>
+
+
+    <div class="video">
+        <video class="video__video" poster="/Layer_839.png" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" ></video>
+        
+        <div class="video__button-big"></div>
+        <div class="video__icon-unmute"><img src="/volume-2.png"></div>
+        <div class="video__icon-mute"><img src="/mute-grey.png"></div>
+
+        <div class="video__controls">  
+            
+            <div class="video__progress-background">
+                <div class="video__progress-bar"></div>
+            </div>
+            <button class="video__button-play" id="play-pause"></button>
+            <div class="video__time-current">00:00</div>
+            <div class="video__time-remain">07:27</div>
+        </div>  
+      
+    
+    </div>
+ 
+
+
+
+<script>
+const video = document.querySelector(".video__video");
+const btnBig = document.querySelector(".video__button-big");
+const progressBar = document.querySelector(".video__progress-bar");
+const btn = document.querySelector("#play-pause");
+const control = document.querySelector(".video__controls");
+
+//start stop triggers 
+
+togglePlayPause = () => {
+    if(video.paused){
+        btn.className = "video__button-pause"
+        video.play()
+        btnBig.className = "video__button-big--hidden"
+        
+    } else {
+        btn.className = "video__button-play"
+        video.pause()
+        btnBig.className = "video__button-big"
+    }
+}
+
+btn.addEventListener("click", togglePlayPause);
+btnBig.addEventListener("click", togglePlayPause);
+
+
+//show progress bar 
+
+video.addEventListener('timeupdate', ()=>{
+    let timeBar = video.currentTime / video.duration;
+    progressBar.style.width = timeBar * 100 + "%"
+    if (video.ended) {
+        btn.className = "video__button-play"
+    }
+});
+
+//show current time 
+const time = document.querySelector(".video__time-current");
+
+time.textContent = "00:00"
+
+video.addEventListener('timeupdate', ()=>{
+
+    let s = parseInt(video.currentTime % 60);
+    let m = parseInt((video.currentTime / 60) % 60);
+    if(video.currentTime <10) {
+    
+    time.textContent = `0${m} : 0${s}`
+    } if (video.currentTime > 10 && video.currentTime < 600) {
+
+        time.textContent = `0${m} : ${s}`
+        
+    } if(video.currentTime > 600) {
+        time.textContent = `${m} : ${s}`
+    }
+
+});
+
+//remain time
+
+const remain = document.querySelector(".video__time-remain");
+
+video.addEventListener("loadedmetadata", ()=>{
+    let s = parseInt(video.duration % 60);
+    let m = parseInt((video.duration / 60) % 60);
+    remain.innerHTML = `${m} : ${s}`
+});
+
+video.addEventListener('timeupdate', ()=> {
+    let pozostało = video.duration - video.currentTime;
+    let s = parseInt(pozostało % 60);
+    let m = parseInt((pozostało / 60) % 60);
+
+    remain.innerHTML = `${m} : ${s}`
+
+});
+
+//muted unmuted 
+
+const iconMuted = document.querySelector(".video__icon-mute");
+const iconUnmuted = document.querySelector(".video__icon-unmute");
+
+video.muted = true
+
+toggleMutedUnmuted = () => {
+    if(video.muted){
+        video.muted = false;
+        iconMuted.style.display = "none"
+        iconUnmuted.style.display = "flex"
+        
+    } else {
+        video.muted = true;
+        iconMuted.style.display = "flex"
+        iconUnmuted.style.display = "none"
+      
+    }
+}
+
+iconMuted.addEventListener("click", toggleMutedUnmuted);
+iconUnmuted.addEventListener("click", toggleMutedUnmuted);
+
+</script>
+
+
+
+    
+</body>
+</html>

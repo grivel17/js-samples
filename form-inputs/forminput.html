@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css" >
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="">
+    <label class="field">
+        <div class="field__label">Imię:</div>
+        <div class="field__field">
+            <input id="enterName" class="field__input">
+            <div id="nameHolder" class="field__placeholder">wpisz imię</div> 
+        </div>
+    </label>
+
+    <label class="field">
+        <div class="field__label">Email:</div>
+        <div class="field__field">
+            <input id="enterMail" class="field__input">
+            <div id="mailHolder" class="field__placeholder">wpisz mail</div> 
+        </div>
+    </label>
+    <input type="submit" value="zapisz się" class="btn btn--accent btn--100 save-brief">
+
+    </form>
+    </div>
+    <script>
+     const inputName = document.querySelector("#enterName"); 
+     const inputMail = document.querySelector("#enterMail"); 
+    
+     const nameHolder = document.querySelector("#nameHolder"); 
+     const mailHolder = document.querySelector("#mailHolder");
+     
+     inputName.addEventListener("focusin", item => {
+         nameHolder.classList.add('filled');
+     })
+     inputName.addEventListener("focusout", item => {
+         if(inputName.value === "") {
+         nameHolder.classList.remove('filled')
+         };
+     });
+
+     inputMail.addEventListener("focusin", item => {
+         mailHolder.classList.add('filled');
+     })
+     inputMail.addEventListener("focusout", item => {
+         if(inputMail.value === "") {
+         mailHolder.classList.remove('filled')
+         };
+     });
+
+    </script>
+</body>
+</html>

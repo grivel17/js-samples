@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    
+    nav {
+        width: 300px;
+        height: 300px;
+        visibility: visible;
+        transition: all .4s linear;
+        background-color: chocolate;
+    }
+</style>
+<body>
+    <button>klik</button>
+    <nav class="show">
+        <ul>
+            <li>one</li>
+            <li>dwa</li>
+            <li>tri</li>
+        </ul>
+    </nav>
+    yekst test
+
+    <script>
+        var btn = document.querySelector("button")
+        var navi = document.querySelector("nav")
+
+        myFunc = () => {
+            
+            control = navi.classList.contains("show")
+            
+            if(control===true){
+                
+                navi.style.width = "0px"
+                navi.style.height = "0px"
+                navi.style.visibility = "hidden"
+                navi.classList.remove("show")
+            } else {
+                navi.style.width = "300px"
+                navi.style.height = "300px"
+                navi.style.visibility = "visible"
+                navi.classList.add("show")
+                
+            }
+        }
+                
+        
+
+        btn.addEventListener("click", myFunc)
+
+    </script>
+</body>
+</html>

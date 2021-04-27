@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css" >
+    <title>Document</title>
+</head>
+<body>
+    <div id="map"></div>
+    
+
+<script>
+    const projectMap = document.querySelector("#map");
+    
+    let map;
+
+    initMap = () => {
+        const mainLocation = {lat: 51.7687323, lng: 19.4569911 };
+        const gdansk = {lat: 54.372158, lng: 18.638306};
+        const krakow = {lat: 50.049683, lng: 19.944544};
+        const poznan = {lat: 52.406376, lng: 16.925167};
+        const szczecin = {lat: 53.428543, lng: 14.552812};
+
+        map = new google.maps.Map(projectMap, {
+            zoom: 6, 
+            center: mainLocation,
+            mapTypeId: 'satellite'
+        });
+
+        const markerMain = new google.maps.Marker({
+            position: mainLocation,
+            map: map,
+         });
+
+         const markerGdansk = new google.maps.Marker({
+            position: gdansk,
+            map: map,
+         });
+
+         const markerKrakow = new google.maps.Marker({
+            position: krakow,
+            map: map,
+         });
+
+         const markerPoznan = new google.maps.Marker({
+            position: poznan,
+            map: map,
+         });
+
+         const markerSzczecin = new google.maps.Marker({
+            position: szczecin,
+            map: map,
+         });
+
+    }
+
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJf-sLbofvo4FmM8OTb_6i7e9N5JImhgU&callback=initMap"
+type="text/javascript"></script>
+
+</body>
+</html>
+
+
