@@ -18,4 +18,4 @@ You will find here a code samples ready to resue. In this repo you can look for 
  
  it's example how to implement google map in a web with api query. Accordind Google Maps docs I built initMpa function.
 
-Generaly JS code is pasted in htnl file as a script.
+Generaly JS code is pasted in html file as a script.
